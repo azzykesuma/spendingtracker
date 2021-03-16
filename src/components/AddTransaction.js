@@ -5,6 +5,7 @@ const AddTransaction = () => {
     const [text,setText] = useState('');
     const [amount,setAmount] = useState(0);
     const { AddTransaction } = useContext(GlobalContext)
+    const [error,setError] = useState([])
 
     const onSubmit = e => {
         e.preventDefault();
@@ -17,8 +18,11 @@ const AddTransaction = () => {
             // you need to change the amount from string to number by adding + to amount
             // otherwise, all of the method such as reduce,filter,tofixed will be considered not a function
         }
-        AddTransaction(newTransaction)
-        
+        if (text.length !== 0 && amount !== 0 ) {
+            return AddTransaction(newTransaction)
+        } else {
+            return alert('the text may be empty/the amount cannot be 0')
+        }
         
     }
     // to add a new transaction, we need to make the onsubmit function. 
